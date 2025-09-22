@@ -3,12 +3,15 @@ using namespace std;
 
 int main()
 {
-	for (int i = 0; i < 5; i++)
+	int Count = 0;
+	cin >> Count;
+
+	for (int i = 0; i < Count; i++)
 	{
 		for (int j = 0; j < i; j++) {
 			cout << " ";
 		}
-		for (int j = 0; j < 5 - i; j++)
+		for (int j = 0; j < Count - i; j++)
 		{
 			cout << "*";
 		}
