@@ -1,4 +1,7 @@
+//preprocessor
 #include <iostream>
+#include <conio.h>
+
 using namespace std;
 
 int main()
@@ -17,26 +20,58 @@ int main()
 		{1, 1, 1, 1, 1, 1, 1, 1, 1, 1,}
 	};
 
+	bool bIsRunning = true;
+
 	int PlayerX = 1;
 	int PlayerY = 1;
 	
 	char PlayerShape = 'P';
+	//»ç»ó(Mapping)
 	char Sprites[10] = { ' ', '*', };
 
-	//Render()
-	for (int Y = 0; Y < 10; Y++)
+	while (bIsRunning)
 	{
-		for (int X = 0; X < 10; X++)
+		//Input
+		int KeyCode = _getch();
+
+		//Process
+		if (KeyCode == 'w')
 		{
-			if (PlayerX == X && PlayerY == Y) {
-				cout << PlayerShape;
-			}
-			else 
-			{
-				cout << Sprites[World[X][Y]];
-			}
+			PlayerY--;
 		}
-		cout << "\n";
+		else if (KeyCode == 's')
+		{
+			PlayerY++;
+		}
+		else if (KeyCode == 'a')
+		{
+			PlayerX--;
+		}
+		else if (KeyCode == 'd')
+		{
+			PlayerX++;
+		}
+		else if (KeyCode == 'q')
+		{
+			bIsRunning = false;
+		}
+
+		//Render()
+		system("cls");
+		for (int Y = 0; Y < 10; Y++)
+		{
+			for (int X = 0; X < 10; X++)
+			{
+				if (PlayerX == X && PlayerY == Y) {
+					cout << PlayerShape;
+				}
+				else
+				{
+					cout << Sprites[World[X][Y]];
+				}
+			}
+			cout << "\n";
+		}
 	}
 	return 0;
 }
