@@ -1,77 +1,104 @@
-//preprocessor
 #include <iostream>
 #include <conio.h>
 
 using namespace std;
 
-int main()
+//LoadLevel
+int World[10][10] = {
+	{1, 1, 1, 1, 1, 1, 1, 1, 1, 1,},
+	{1, 0, 0, 0, 0, 0, 0, 0, 0, 1,},
+	{1, 0, 0, 0, 0, 0, 0, 0, 0, 1,},
+	{1, 0, 0, 0, 0, 0, 0, 0, 0, 1,},
+	{1, 0, 0, 0, 0, 0, 0, 0, 0, 1,},
+	{1, 0, 0, 0, 0, 0, 0, 0, 0, 1,},
+	{1, 0, 0, 0, 0, 0, 0, 0, 0, 1,},
+	{1, 0, 0, 0, 0, 0, 0, 0, 0, 1,},
+	{1, 0, 0, 0, 0, 0, 0, 0, 0, 1,},
+	{1, 1, 1, 1, 1, 1, 1, 1, 1, 1,}
+};
+
+bool bIsRunning = true;
+
+int PlayerX = 1;
+int PlayerY = 1;
+char PlayerShape = 'P';
+
+//사상(Mapping)
+char Sprites[10] = { ' ', '*', };
+
+int KeyCode;
+
+void Input()
 {
-	//LoadLevel
-	int World[10][10] = {
-		{1, 1, 1, 1, 1, 1, 1, 1, 1, 1,},
-		{1, 0, 0, 0, 0, 0, 0, 0, 0, 1,},
-		{1, 0, 0, 0, 0, 0, 0, 0, 0, 1,},
-		{1, 0, 0, 0, 0, 0, 0, 0, 0, 1,},
-		{1, 0, 0, 0, 0, 0, 0, 0, 0, 1,},
-		{1, 0, 0, 0, 0, 0, 0, 0, 0, 1,},
-		{1, 0, 0, 0, 0, 0, 0, 0, 0, 1,},
-		{1, 0, 0, 0, 0, 0, 0, 0, 0, 1,},
-		{1, 0, 0, 0, 0, 0, 0, 0, 0, 1,},
-		{1, 1, 1, 1, 1, 1, 1, 1, 1, 1,}
-	};
+	//Input
+	KeyCode = _getch();
+}
 
-	bool bIsRunning = true;
-
-	int PlayerX = 1;
-	int PlayerY = 1;
-	
-	char PlayerShape = 'P';
-	//사상(Mapping)
-	char Sprites[10] = { ' ', '*', };
-
-	while (bIsRunning)
+void Process()
+{
+	//Process
+	if (KeyCode == 'w')
 	{
-		//Input
-		int KeyCode = _getch();
-
-		//Process
-		if (KeyCode == 'w')
+		if (PlayerY > 1)
 		{
 			PlayerY--;
 		}
-		else if (KeyCode == 's')
+	}
+	else if (KeyCode == 's')
+	{
+		if (PlayerY < 8)
 		{
 			PlayerY++;
 		}
-		else if (KeyCode == 'a')
+	}
+	else if (KeyCode == 'a')
+	{
+		if (PlayerX > 1)
 		{
 			PlayerX--;
 		}
-		else if (KeyCode == 'd')
+	}
+	else if (KeyCode == 'd')
+	{
+		if (PlayerX < 8)
 		{
 			PlayerX++;
 		}
-		else if (KeyCode == 'q')
-		{
-			bIsRunning = false;
-		}
+	}
+	else if (KeyCode == 'q')
+	{
+		bIsRunning = false;
+	}
+}
 
-		//Render()
-		system("cls");
-		for (int Y = 0; Y < 10; Y++)
+void Render()
+{
+	//Render()
+	system("cls");
+	for (int Y = 0; Y < 10; Y++)
+	{
+		for (int X = 0; X < 10; X++)
 		{
-			for (int X = 0; X < 10; X++)
-			{
-				if (PlayerX == X && PlayerY == Y) {
-					cout << PlayerShape;
-				}
-				else
-				{
-					cout << Sprites[World[X][Y]];
-				}
+			if (PlayerX == X && PlayerY == Y) {
+				cout << PlayerShape;
 			}
-			cout << "\n";
+			else
+			{
+				cout << Sprites[World[X][Y]];
+			}
 		}
+		cout << "\n";
+	}
+}
+
+int main()
+{
+	//frame, deltaseconds
+	while (bIsRunning)
+	{
+		Input();
+		Process();
+		Render();
 	}
 	return 0;
 }
