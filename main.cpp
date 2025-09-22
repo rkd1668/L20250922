@@ -3,17 +3,38 @@ using namespace std;
 
 int main()
 {
-	int Count = 0;
-	cin >> Count;
+	//LoadLevel
+	int World[10][10] = {
+		{1, 1, 1, 1, 1, 1, 1, 1, 1, 1,},
+		{1, 0, 0, 0, 0, 0, 0, 0, 0, 1,},
+		{1, 0, 0, 0, 0, 0, 0, 0, 0, 1,},
+		{1, 0, 0, 0, 0, 0, 0, 0, 0, 1,},
+		{1, 0, 0, 0, 0, 0, 0, 0, 0, 1,},
+		{1, 0, 0, 0, 0, 0, 0, 0, 0, 1,},
+		{1, 0, 0, 0, 0, 0, 0, 0, 0, 1,},
+		{1, 0, 0, 0, 0, 0, 0, 0, 0, 1,},
+		{1, 0, 0, 0, 0, 0, 0, 0, 0, 1,},
+		{1, 1, 1, 1, 1, 1, 1, 1, 1, 1,}
+	};
 
-	for (int i = 0; i < Count; i++)
+	int PlayerX = 1;
+	int PlayerY = 1;
+	
+	char PlayerShape = 'P';
+	char Sprites[10] = { ' ', '*', };
+
+	//Render()
+	for (int Y = 0; Y < 10; Y++)
 	{
-		for (int j = 0; j < i; j++) {
-			cout << " ";
-		}
-		for (int j = 0; j < Count - i; j++)
+		for (int X = 0; X < 10; X++)
 		{
-			cout << "*";
+			if (PlayerX == X && PlayerY == Y) {
+				cout << PlayerShape;
+			}
+			else 
+			{
+				cout << Sprites[World[X][Y]];
+			}
 		}
 		cout << "\n";
 	}
