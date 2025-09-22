@@ -39,28 +39,28 @@ void Process()
 	//Process
 	if (KeyCode == 'w')
 	{
-		if (PlayerY > 1)
+		if (World[PlayerX][PlayerY - 1] != 1)
 		{
 			PlayerY--;
 		}
 	}
 	else if (KeyCode == 's')
 	{
-		if (PlayerY < 8)
+		if (World[PlayerX][PlayerY + 1] != 1)
 		{
 			PlayerY++;
 		}
 	}
 	else if (KeyCode == 'a')
 	{
-		if (PlayerX > 1)
+		if (World[PlayerX - 1][PlayerY] != 1)
 		{
 			PlayerX--;
 		}
 	}
 	else if (KeyCode == 'd')
 	{
-		if (PlayerX < 8)
+		if (World[PlayerX + 1][PlayerY] != 1)
 		{
 			PlayerX++;
 		}
