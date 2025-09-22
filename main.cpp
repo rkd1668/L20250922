@@ -34,33 +34,43 @@ void Input()
 	KeyCode = _getch();
 }
 
+bool Predict(int NewX, int NewY)
+{
+	if (World[NewY][NewX] == 0)
+	{
+		return true;
+	}
+
+	return false;
+}
+
 void Process()
 {
 	//Process
 	if (KeyCode == 'w')
 	{
-		if (World[PlayerX][PlayerY - 1] != 1)
+		if (Predict(PlayerX, PlayerY - 1))
 		{
 			PlayerY--;
 		}
 	}
 	else if (KeyCode == 's')
 	{
-		if (World[PlayerX][PlayerY + 1] != 1)
+		if (Predict(PlayerX, PlayerY + 1))
 		{
 			PlayerY++;
 		}
 	}
 	else if (KeyCode == 'a')
 	{
-		if (World[PlayerX - 1][PlayerY] != 1)
+		if (Predict(PlayerX - 1, PlayerY))
 		{
 			PlayerX--;
 		}
 	}
 	else if (KeyCode == 'd')
 	{
-		if (World[PlayerX + 1][PlayerY] != 1)
+		if (Predict(PlayerX + 1, PlayerY))
 		{
 			PlayerX++;
 		}
